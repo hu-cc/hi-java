@@ -7,6 +7,10 @@ package reusing.inherit;
 class Art {
     String type = "Art";
 
+    Art() {
+        System.out.println("Art no args constructor");
+    }
+
     Art(String name) {
         System.out.println("Art constructor - " + name);
     }
@@ -18,6 +22,10 @@ class Art {
 
 class Drawing extends Art {
     String type = "Drawing";
+
+    Drawing() {
+        System.out.println("Drawing no args constructor");
+    }
 
     Drawing(String name) {
         super(name);
@@ -35,10 +43,14 @@ class Drawing extends Art {
 }
 
 public class Demo extends Drawing {
-   public Demo() {
-       super("Tom");
+    Demo() {
+        System.out.println("Demo no args constructor");
+    }
+
+    public Demo(String name) {
+       super(name);
        System.out.println("Demo constructor");
-   }
+    }
 
     @Override
     void colour(String rgb) {
@@ -47,9 +59,10 @@ public class Demo extends Drawing {
     }
 
     public static void main(String[] args) {
-        Demo demo = new Demo();
+        Demo demo = new Demo("Tom");
         demo.cost(1);
         demo.colour("#000000");
         demo.showTypes();
+        new Demo();
     }
 }
