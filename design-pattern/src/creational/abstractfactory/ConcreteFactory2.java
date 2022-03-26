@@ -6,12 +6,12 @@ package creational.abstractfactory;
  */
 public class ConcreteFactory2 implements AbstractFactory{
     @Override
-    public AbstractProductA CreateProductA() {
+    public AbstractProductA createProductA() {
         return new ProductA2();
     }
 
     @Override
-    public AbstractProductB CreateProductB() {
+    public AbstractProductB createProductB() {
         return new ProductB2();
     }
 }

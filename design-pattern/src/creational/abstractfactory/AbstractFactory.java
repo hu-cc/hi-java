@@ -5,6 +5,6 @@ package creational.abstractfactory;
  * 2022/1/6 6:04
  */
 public interface AbstractFactory {
-    AbstractProductA CreateProductA();
-    AbstractProductB CreateProductB();
+    AbstractProductA createProductA();
+    AbstractProductB createProductB();
 }
