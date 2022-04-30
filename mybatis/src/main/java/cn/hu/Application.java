@@ -5,6 +5,7 @@ import cn.hu.dao.UserMapper;
 import cn.hu.entity.User;
 import cn.hu.util.MyBatisUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 /**
  * @author hucc
@@ -13,11 +14,13 @@ import org.apache.ibatis.session.SqlSession;
 public class Application {
 
     public static void main(String[] args)  {
-        SqlSession sqlSession = MyBatisUtils.getSqlSession();
+        SqlSessionFactory factory = MyBatisUtils.getSqlSessionFactory();
 
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        User user = userMapper.selectUser("admin");
-        System.out.println(user.getPassword());
+        try (SqlSession sqlSession = factory.openSession()) {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            User user = userMapper.selectUser("admin");
+            System.out.println(user.getPassword());
+        }
     }
 
 }
