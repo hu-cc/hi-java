@@ -18,8 +18,37 @@ public class Application {
 
         try (SqlSession sqlSession = factory.openSession()) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-            User user = userMapper.selectUser("admin");
-            System.out.println(user.getPassword());
+            User user = userMapper.selectUser(1);
+            printUser(user);
+
+//            user = new User("foo", "bar");
+//            int res = userMapper.insertUser(user);
+//            System.out.println("insert result: " + res);
+//            sqlSession.commit();
+//            user = userMapper.selectUser(3);
+//            printUser(user);
+
+            user = userMapper.selectUser(3);
+            user.setPassword("bar001");
+            int res = userMapper.updateUser(user);
+            System.out.println("update result: " + res);
+            sqlSession.commit();
+            user = userMapper.selectUser(3);
+            printUser(user);
+
+
+            user = userMapper.selectUser(4);
+            res = userMapper.deleteUser(user);
+            System.out.println("delete result: " + res);
+            sqlSession.commit();
+        }
+    }
+
+    private static void printUser(User user) {
+        if (null == user) {
+            System.out.println("user is null.");
+        } else {
+            System.out.println(user);
         }
     }
 

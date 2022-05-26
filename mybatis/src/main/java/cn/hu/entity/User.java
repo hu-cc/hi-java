@@ -6,6 +6,8 @@ package cn.hu.entity;
  */
 public class User {
 
+    private Integer id;
+
     private String username;
 
     private String password;
@@ -36,7 +38,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
