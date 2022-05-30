@@ -3,6 +3,7 @@ package base;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author hucc
@@ -10,14 +11,18 @@ import java.util.concurrent.Executors;
  */
 public class ThreadExample {
 
-    private int cnt = 0;
+//    private int cnt = 0;
+
+    private final AtomicInteger cnt = new AtomicInteger(0);
 
     public void add() {
-        cnt++;
+//        cnt++;
+        cnt.addAndGet(1);
     }
     
     public int get() {
-        return cnt;
+//        return cnt;
+        return cnt.get();
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -33,7 +38,7 @@ public class ThreadExample {
         }
         countDownLatch.await();
         executorService.shutdown();
-        // always < 1000
+
         System.out.println(example.get());
     }
 
